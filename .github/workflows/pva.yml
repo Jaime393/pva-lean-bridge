@@ -1,0 +1,10 @@
+name: PVA lean bridge
+on: [push]
+jobs:
+  pva:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install click
+      - run: python cli.py --tex paper.tex --out lean
+      - run: ls -R lean
