@@ -1,13 +1,16 @@
-# pva-lean-bridge V202 — rho(x)>0
+# pva-lean-bridge
 
-Puente LaTeX -> Lean 4 — genera esqueletos Mathlib + informe brechas.
+Extractor de una cola de formalización a partir de entornos LaTeX. No transforma una afirmación matemática en un teorema de `True`, ni atribuye una prueba al enunciado original.
 
 ```bash
-pip install click
-python cli.py --tex paper.tex --out lean
-lake build # si tienes Lean 4 + Mathlib
+python3 cli.py --tex paper.tex
+python3 cli.py --tex paper.tex --out audit-output/backlog
+python3 scripts/bridge.py --tex paper.tex
+python3 -m unittest discover -s tests -v
 ```
 
-Incluye ejemplo `lean/NavierStokes.lean` enunciado Clay — esqueleto vacio — primer paso PVA para Problema del Milenio.
+El reporte usa IDs por contenido, hash de fuente, tipo y ocurrencias. Todos los renglones de fuente generados quedan comentados; no se genera `axiom`, `sorry` ni prueba trivial como sustituto de la afirmación original.
 
-Bloque 2 formalizacion — parte de PVA ecosistema 20 herramientas.
+El modo predeterminado no escribe archivos. Una salida explícita debe ser nueva o vacía; no se sobrescribe `lean/` ni se crea un ejemplo cuando falta la entrada.
+
+Los archivos históricos de `lean/`, su configuración y sus `axiom`/`sorry` se conservan como material no validado. No se ejecutó Lean/Mathlib ni se comprobó compilación o prueba formal en esta revisión. El extractor textual no es un parser completo de TeX.

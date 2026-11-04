@@ -5,6 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pip install click
-      - run: python cli.py --tex paper.tex --out lean
-      - run: ls -R lean
+      - run: python3 -m unittest discover -s tests -v
+      - run: python3 cli.py --tex paper.tex
