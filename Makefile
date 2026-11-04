@@ -1,11 +1,11 @@
 repro:
-	python cli.py --tex paper.tex --out lean
+	python3 cli.py --tex paper.tex
 
 reproduce:
-	python cli.py --tex paper.tex --out lean
+	python3 cli.py --tex paper.tex
 
 dev:
 	python cli.py
 
 test:
-	python cli.py
+	python3 -m unittest discover -s tests -v
